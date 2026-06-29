@@ -54,3 +54,20 @@ git push
 -git push origin main
 -git push -u origin minha-feature (Enviar e definir upstream (para futuros push/pull automáticos)
 '''
+
+# Abrir projeto
+
+# ↓
+# git pull origin main
+
+# ↓
+# Programar
+
+# ↓
+# git add .
+
+# ↓
+# git commit -m "mensagem"
+
+# ↓
+# git push origin main
