@@ -18,11 +18,11 @@ def remover (pilha,ponteiro):
        print(f'Número removido: {pilha[ponteiro-1]}')
        return pilha, ponteiro - 1
 
-def escrever (pilha):
+def escrever (pilha, ponteiro):
     for i in range(ponteiro):
         print(pilha[i])
 
-def checarproximo (pilha):
+def checarproximo (pilha,ponteiro):
      print(f'O Próximo a sair da pilha é: {pilha[ponteiro-1]}')
 
 ponteiro = 0
@@ -46,9 +46,9 @@ while opcao != 0:
     elif op == 2:
        pilha, ponteiro =  remover (pilha,ponteiro)
     elif op == 3:
-        escrever(pilha)
+        escrever(pilha,ponteiro)
     elif op == 4:
-        checarproximo(pilha)
+        checarproximo(pilha,ponteiro)
     elif op == 5:
         cheia(ponteiro)
         if ponteiro == 5:
