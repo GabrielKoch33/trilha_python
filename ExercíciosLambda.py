@@ -245,34 +245,30 @@ Nesses casos, os valores não são armazenados na memória, de uma vez só, ao i
 Ou seja, só vão ser exibidos se usarmos next e percorremos um por um, por isso muitas vezes usamos list()
 De forma a converter em uma estrutura mais manipulavel e iteravel.
 '''
+# =====================================================================
 # Exercício 15 — Soma total
 # =====================================================================
-
 # Dataset:
-
-# vendas = [100, 200, 300, 400]
-
+vendas = [100, 200, 300, 400]
 # Use generator expression dentro de sum() para calcular o total.
-
 # SEM criar lista intermediária.
 
+total_vendas = (sum(x for x in vendas))
+
+# =====================================================================
 # Exercício 16 — Quantidade de erros
-
+# =====================================================================
 # Dataset:
-
-# logs = [
-#     "INFO",
-#     "ERRO",
-#     "INFO",
-#     "ERRO",
-#     "ERRO"
-# ]
-
+logs = [
+     "INFO",
+     "ERRO",
+     "INFO",
+     "ERRO",
+     "ERRO"
+]
 # Use generator expression para contar quantos "ERRO" existem.
 
-# Dica:
-
-# sum(...)
+contador_erros = ()
 # Exercício 17 — Existe produto caro?
 
 # Dataset:
