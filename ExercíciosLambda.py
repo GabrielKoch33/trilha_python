@@ -1,3 +1,4 @@
+import sys
 """
 =====================================================
 EXERCÍCIOS - LIST COMPREHENSION E GENERATOR EXPRESSIONS
@@ -33,12 +34,12 @@ filtermaiores10 = filter(lambda x: x > 10, lista) #nesse caso filter (e map etc)
 print(pares_impares(10))
 print(grades(10))
 
-while True:
-    continuar = input('continuar S/N: ')
-    if continuar == 'S':
-        print(next(filtermaiores10))
-    else: 
-        break
+# while True:
+#     continuar = input('continuar S/N: ')
+#     if continuar == 'S':
+#         print(next(filtermaiores10))
+#     else: 
+#         break
 
 # =====================================================
 # NÍVEL 1 - ENTENDENDO A SINTAXE
@@ -100,69 +101,69 @@ lista_valores = ["positivo" if num > 0 else "negativo" if num < 0 else "zero" fo
 print(lista_valores)
 
 # -----------------------------------------------------
-
 # Exercício 6
 # Retorne apenas as palavras com mais de quatro letras.
 
 palavras = ["python", "java", "c", "javascript", "go"]
-
+mais_de_4_letras = [p for p in palavras if len(p) > 4]
+print(mais_de_4_letras)
 
 # -----------------------------------------------------
-
 # Exercício 7
 # Transforme todas as palavras em letras minúsculas.
 
 linguagens = ["Python", "JAVA", "Sql", "Docker"]
+tudo_maiuscula = [p.upper() for p in linguagens]
+print(tudo_maiuscula)
 
 # Resultado esperado:
 # ["python", "java", "sql", "docker"]
 
-
 # =====================================================
 # NÍVEL 3 - DICIONÁRIOS
 # =====================================================
-
+# Exercício 8
+# Gere uma lista contendo apenas os nomes dos produtos
+# cujo preço seja maior que R$300.
 produtos = {
     "mouse": 150,
     "teclado": 250,
     "monitor": 1200,
     "webcam": 400
 }
-
-# Exercício 8
-# Gere uma lista contendo apenas os nomes dos produtos
-# cujo preço seja maior que R$300.
-
+somente_nomes = [ produto for produto, preco in produtos.items() if preco > 300 ]
+print(somente_nomes)
 
 # -----------------------------------------------------
-
 # Exercício 9
 # Gere uma lista contendo apenas os preços.
 
+somente_precos = [ preco for preco in produtos.values()]
+print(somente_precos)
+
 # Resultado esperado:
 # [150, 250, 1200, 400]
-
-
 # -----------------------------------------------------
-
 # Exercício 10
 # Gere uma lista contendo strings no formato:
 #
 # "mouse - R$150"
 # "teclado - R$250"
 # ...
-
+produtos_formatados = [f'"{prod} - {preco}"' for prod, preco in produtos.items()]
+print(produtos_formatados)
 
 # =====================================================
 # NÍVEL 4 - COMPREENSÕES ANINHADAS
 # =====================================================
-
 # Exercício 11
 # Gere todos os pares possíveis entre letras e números.
 
 letras = ["A", "B", "C"]
 numeros = [1, 2, 3]
 
+combinacoes = [(letra,num) for letra in letras for num in numeros]
+print(combinacoes)
 # Resultado esperado:
 #
 # ('A',1)
@@ -170,71 +171,87 @@ numeros = [1, 2, 3]
 # ('A',3)
 # ('B',1)
 # ...
-
-
 # -----------------------------------------------------
-
 # Exercício 12
 # Crie uma matriz 5x5 preenchida com zeros.
 
+matriz_zero = [[0 for c in range(5)] for l in range(5)]
+for linha in matriz_zero:
+    print(linha)
 
 # -----------------------------------------------------
 
 # Exercício 13
 # Crie uma matriz 4x4 onde cada posição seja:
-#
 # linha + coluna
-#
+
 # Resultado esperado:
-#
 # [
 # [0,1,2,3],
 # [1,2,3,4],
 # [2,3,4,5],
 # [3,4,5,6]
 # ]
-
-
+matriz4x4 = [[i+j for j in range(4)] for i in range(4)]
+for linha in matriz4x4:
+    print(linha)
+'''
+Mostrando a diferença entre usar LIST COMPREHENSION x FOR LOOPs normais.
+A única desvantagem da LC é a legibilidade.
+'''
+matriz = []
+for i in range(4):
+    linha = []
+    for j in range(4):
+        linha.append(i+j)
+    matriz.append(linha)
+print(matriz)
 # =====================================================
 # NÍVEL 5 - GENERATOR EXPRESSIONS
 # =====================================================
-
 # Exercício 14
 # Crie um generator que produza os quadrados dos números
 # de 1 até 100.
 #
 # Não transforme em lista.
-
+quadrados100 = ( i*i for i in range(1,101))
+while quadrados100:
+    try:
+        print(next(quadrados100))
+    except Exception as erro:
+        print(f'GERADOR VAZIO {erro}')
+        print('SAINDO DO GERADOR')
+        break
 
 # -----------------------------------------------------
-
 # Exercício 15
 # Consuma o generator anterior utilizando um for.
+quadrados100 = ( i*i for i in range(1,101))
+for i in range(1,101):
+    print(next(quadrados100))
 
 
 # -----------------------------------------------------
-
 # Exercício 16
 # Utilize um generator para calcular a soma dos quadrados
 # de 1 até 100.
 #
-# Dica:
-# sum(...)
+quadrados100 = ( i*i for i in range(1,101))
 
 
 # -----------------------------------------------------
-
 # Exercício 17
 # Crie um generator contendo apenas os números pares
 # de 1 até 1000.
-#
 # Imprima apenas os 10 primeiros usando next().
 
+onlypares = (i for i in range(1,1001) if i % 2 == 0)
+for i in range(10):
+    print(next(onlypares))
 
 # =====================================================
 # NÍVEL 6 - COMPARAÇÕES
 # =====================================================
-
 # Exercício 18
 # Faça duas implementações:
 #
@@ -242,28 +259,20 @@ numeros = [1, 2, 3]
 # 2) Generator Expression
 #
 # Para gerar os quadrados dos números de 1 até 1.000.000.
-#
 # Depois compare:
-#
 # - type()
 # - sys.getsizeof()
 # - tempo de criação (opcional)
 
+list_c = [i for i in range(1,1000000)]
+gen_ex = (i for i in range(1,1000000))
+print(type(list_c)) # class list 
+print(type(gen_ex)) # class generator
+print(sys.getsizeof(list_c)) # 8448728
+print(sys.getsizeof(gen_ex)) # 200
 
 # -----------------------------------------------------
-
 # Exercício 19
-# Leia um arquivo texto.
-#
-# Crie um generator que produza apenas as linhas que
-# contenham a palavra "erro".
-#
-# Não carregue todo o arquivo em memória.
-
-
-# -----------------------------------------------------
-
-# Exercício 20
 # Considere:
 
 clientes = [
@@ -272,16 +281,19 @@ clientes = [
     {"nome": "Maria", "idade": 42},
     {"nome": "João", "idade": 18},
 ]
-
 # Faça:
-#
 # a) Uma List Comprehension contendo apenas os nomes
 #    dos maiores de idade.
-#
 # b) Um Generator Expression produzindo exatamente
 #    o mesmo resultado.
-
-
+lc_nomes_menores = [cliente['nome'] for cliente in clientes if cliente['idade'] >= 18 ]
+genex_menor_nome = (cliente['nome'] for cliente in clientes if cliente['idade'] >= 18)
+print(lc_nomes_menores)
+while True:
+    try:
+        print(next(genex_menor_nome))
+    except:
+        break
 # =====================================================
 # DESAFIO FINAL
 # =====================================================
@@ -296,26 +308,41 @@ transacoes = [
 
 """
 Sem utilizar laços for tradicionais (exceto para exibir resultados quando necessário):
-
 1. Gere uma lista contendo apenas as entradas.
-
 2. Gere uma lista contendo apenas as saídas.
-
 3. Gere uma lista apenas com os valores das entradas.
-
 4. Calcule o total de entradas utilizando um generator.
-
 5. Calcule o total de saídas utilizando um generator.
-
 6. Calcule o saldo final.
-
 7. Gere uma lista de strings no formato:
-
 ENTRADA: R$1000
 SAÍDA: R$300
 ...
-
 8. Bônus:
 Ordene as transações por valor antes de gerar a lista
 de strings utilizando sorted(key=lambda ...).
 """
+sum_entrada = 0
+tot_entr = 0  
+sum_saida = 0
+tot_saida = 0 
+
+entradas = [f'{item['tipo']} - {item['valor']}'for item in transacoes if item['tipo'] == 'entrada']
+saidas = [f'{item['tipo']} - {item['valor']}'for item in transacoes if item['tipo'] == 'saida']
+val_entrada = [item['valor'] for item in transacoes if item['tipo'] == 'entrada']
+val_saida = [item['valor'] for item in transacoes if item['tipo'] == 'saida']
+gnex_entr = (valor for valor in val_entrada)
+for i in gnex_entr:
+    sum_entrada += i
+    tot_entr += 1  
+print(f'{sum_entrada},{tot_entr}')  
+gnex_saida = (valor for valor in val_saida)
+for i in gnex_saida:
+    sum_saida += i
+    tot_saida += 1  
+print(f'{sum_saida},{tot_saida}') 
+
+lista_linda_hehe_estou_louco = [f'{item['tipo'].upper()}: R${item['valor']}' for item in transacoes]
+print(lista_linda_hehe_estou_louco)
+lista_ordenada = sorted(lista_linda_hehe_estou_louco,key= lambda n:n[1])
+print(lista_ordenada)
