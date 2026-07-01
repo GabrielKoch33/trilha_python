@@ -34,12 +34,12 @@ filtermaiores10 = filter(lambda x: x > 10, lista) #nesse caso filter (e map etc)
 print(pares_impares(10))
 print(grades(10))
 
-# while True:
-#     continuar = input('continuar S/N: ')
-#     if continuar == 'S':
-#         print(next(filtermaiores10))
-#     else: 
-#         break
+while True:
+    continuar = input('continuar S/N: ')
+    if continuar == 'S':
+        print(next(filtermaiores10))
+    else: 
+       break
 
 # =====================================================
 # NÍVEL 1 - ENTENDENDO A SINTAXE
@@ -238,6 +238,8 @@ for i in range(1,101):
 #
 quadrados100 = ( i*i for i in range(1,101))
 
+somaquad = (sum(x for x in quadrados100))
+print(somaquad)
 
 # -----------------------------------------------------
 # Exercício 17
@@ -295,57 +297,28 @@ while True:
     except:
         break
 # =====================================================
-# DESAFIO FINAL
+# CONSIDERAÇÕES FINAIS
+# geradores:
+# -> Permitem guardar valores infinitos sem necessidade de mandar para memória
+# -> Consultamos apenas aquilo que queremos
+# -> Bom para enorme quantidades de dados
 # =====================================================
 
-transacoes = [
-    {"tipo": "entrada", "valor": 1000},
-    {"tipo": "saida", "valor": 300},
-    {"tipo": "entrada", "valor": 500},
-    {"tipo": "saida", "valor": 100},
-    {"tipo": "entrada", "valor": 700},
-]
+def gerador():
+    for e in range(5):
+        yield e
+# yield nos permite transformar funções em genexp
+# nesse caso o yield seria como um 'return'
+# yield guarda os valores de 'e' em gerador() e mesmo se for interrompido, quando chamado dnv ele saberá de onde parou
+for item in gerador():
+    print(item) # 0,1,2,3,4
 
-"""
-Sem utilizar laços for tradicionais (exceto para exibir resultados quando necessário):
-1. Gere uma lista contendo apenas as entradas.
-2. Gere uma lista contendo apenas as saídas.
-3. Gere uma lista apenas com os valores das entradas.
-4. Calcule o total de entradas utilizando um generator.
-5. Calcule o total de saídas utilizando um generator.
-6. Calcule o saldo final.
-7. Gere uma lista de strings no formato:
-ENTRADA: R$1000
-SAÍDA: R$300
-...
-8. Bônus:
-Ordene as transações por valor antes de gerar a lista
-de strings utilizando sorted(key=lambda ...).
-"""
-sum_entrada = 0
-tot_entr = 0  
-sum_saida = 0
-tot_saida = 0 
 
-entradas = [f'{item['tipo']} - {item['valor']}'for item in transacoes if item['tipo'] == 'entrada']
-saidas = [f'{item['tipo']} - {item['valor']}'for item in transacoes if item['tipo'] == 'saida']
-val_entrada = [item['valor'] for item in transacoes if item['tipo'] == 'entrada']
-val_saida = [item['valor'] for item in transacoes if item['tipo'] == 'saida']
-gnex_entr = (valor for valor in val_entrada)
+def fib_gen(n):
+    a = b = 1
+    for e in range(n):
+        a, b = b, a + b
+        yield a
 
-for i in gnex_entr:
-    sum_entrada += i
-    tot_entr += 1  
-print(f'{sum_entrada},{tot_entr}')  
-
-gnex_saida = (valor for valor in val_saida)
-for i in gnex_saida:
-    sum_saida += i
-    tot_saida += 1  
-print(f'{sum_saida},{tot_saida}') 
-
-lista_linda_hehe_estou_louco = [f'{item['tipo'].upper()}: R${item['valor']}' for item in transacoes]
-print(lista_linda_hehe_estou_louco)
-
-lista_ordenada = sorted(lista_linda_hehe_estou_louco,key= lambda n:n[1])
-print(lista_ordenada)
+for x in fib_gen(7):
+    print(x) #1,2,3,5,8,13,21
