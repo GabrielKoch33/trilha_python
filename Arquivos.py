@@ -38,9 +38,19 @@ arquivo.write(
 arquivo.close()
 
 
-arquivo = open('ola_mundo.txt', 'r')
-linha_conteudo = arquivo.readline()
+with open('ola_mundo.txt', 'r') as file:
+    linha_conteudo = file.readline()
+
 print(linha_conteudo)# <- caso desejassemos visualizar apenas a primeira linha de um texto, usamos .readline()
+
+#============================================================
+# DELETAR
+#============================================================
+# para deletarmos um arquivo precisamos importar o módulo .os
+import os
+
+os.remove('ola_mundo.txt')
+
 
 #============================================================
 # MANIPULANDO ARQUIVOS COM O STATEMENT 'with'
@@ -49,6 +59,7 @@ print(linha_conteudo)# <- caso desejassemos visualizar apenas a primeira linha d
 With é usado para nos ajudar a abrir arquivos, trabalharmos neles, e que seja fechado corretamente
 mesmo em casos de erro
 '''
+# aqui vai dar erro pq excluímos o arquivo acima, a agora tentamos ler 
 with open('ola_mundo.txt','r') as file:# <- abre arquivo, e 'file' recebe seu conteudo
     conteudo = file.read()             # <- lemos o 'file' e passamos seu conteudo, caso o arquivo não exista, fecha
     print(conteudo)                    # <- print
