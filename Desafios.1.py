@@ -134,7 +134,6 @@ while True:
 # - Valide texto vazio.
 # - Na compactação, cuidado com o último bloco de caracteres.
 
-
 # =====================================================================
 # Exercício 003: Sistema de estoque com listas paralelas.
 # Crie um sistema de estoque usando três listas paralelas.
