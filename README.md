@@ -119,7 +119,7 @@ Nesta fase, o objetivo é dominar as principais estruturas de dados nativas do P
 - [x] Sets
 - [x] Dicionários
 - [x] List comprehension
-- [] Dictionary comprehension
+- [x] Dictionary comprehension
 - [x] Set comprehension
 - [x] Comprehensions aninhadas
 - [x] Diferença entre lista, tupla, set e dicionário em problemas reais
@@ -310,11 +310,11 @@ Nesta fase, o foco é aproximar o código de práticas utilizadas em projetos re
 ## Checklist
 
 - [ ] Boas práticas PEP 8
-- [ ] Nomeação correta
+- [x] Nomeação correta
 - [ ] Refatoração
-- [ ] Separação em módulos
-- [ ] Type hints
-- [ ] Virtualenv / venv
+- [x] Separação em módulos
+- [x] Type hints
+- [x] Virtualenv / venv
 - [ ] Quando usar ambiente virtual
 - [ ] `requirements.txt`
 - [ ] `pyproject.toml` básico
@@ -369,19 +369,19 @@ Nesta fase, o foco é aprender controle de versão e publicar projetos no GitHub
 
 ## Checklist
 
-- [ ] O que é controle de versão
-- [ ] `git init`
-- [ ] `git status`
-- [ ] `git add`
-- [ ] `git commit`
+- [x] O que é controle de versão
+- [x] `git init`
+- [x] `git status`
+- [x] `git add`
+- [x] `git commit`
 - [ ] `git log`
 - [ ] `git diff`
-- [ ] `.gitignore`
+- [x] `.gitignore`
 - [ ] Branches básicas
-- [ ] GitHub
-- [ ] `README.md`
+- [x] GitHub
+- [x] `README.md`
 - [ ] Versionamento de projetos de portfólio
-- [ ] Commits pequenos e descritivos
+- [x] Commits pequenos e descritivos
 
 ## Ao final desta fase, devo ser capaz de
 
