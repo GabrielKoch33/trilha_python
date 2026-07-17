@@ -103,6 +103,7 @@ class Veiculo:
 
 class Carro(Veiculo):
    pass # classe Carro (filha) usa do 'move()' da classe Veiculo
+
 class Barco(Veiculo):
   def __init__(self, brand, model):
     self.brand = brand
