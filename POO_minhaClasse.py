@@ -29,10 +29,10 @@ class Pessoa: # Declaração de CLASSE
 # Cada objeto recebe uma cópia dos atributos e métodos das classes
 
 # Ao atribuirmos uma classe a uma variavel a variavel se torna um OBJETO
-pessoa1 = Pessoa()
+pessoa1 = Pessoa("Julio")
 print(pessoa1.x)
 
-pessoa2 = Pessoa()
+pessoa2 = Pessoa("Marcos")
 pessoa2.x = 67
 print(pessoa2.x)
 # Aqui a cópia do atributo X relacionada ao obj2 passa a valer 67, mas somente nesse 
@@ -69,9 +69,9 @@ class Estudante(Pessoa):
    # def saudacoes(): 
 
     def __init__(self, name, age, cod_aluno, media_final):# construtor da classe Estudante
-        super().__init__(self,name,age)# chama construtor da classe pai (super referencia a classe pai)
-        self.cod_aluno = 104411 
-        self.media_final = 8.5 # atributos criados exclusivamente para Estudante (pelo init externo)
+        super().__init__(name,age)# chama construtor da classe pai (super referencia a classe pai)
+        self.cod_aluno = cod_aluno 
+        self.media_final = media_final # atributos criados exclusivamente para Estudante (pelo init externo)
 
     def bemvindo(self):
         print(
@@ -80,7 +80,7 @@ class Estudante(Pessoa):
             )
 
 
-aluno1 = Estudante("Julio",24)
+aluno1 = Estudante("Julio",24, 1041044, 8.8)
 print(aluno1.x)
 aluno1.saudacoes()
 print(aluno1)
@@ -153,7 +153,7 @@ class Cachorro:
     self._sexo = sexo
     
   def get_raca(self): # getter
-    return self.__raca
+    return self.__raca_cachorro
   
   def set_raca(self,raca_cachorro): #setter
     if not raca_cachorro:
@@ -162,6 +162,6 @@ class Cachorro:
         self.__raca_cachorro = raca_cachorro
         return 'Raça definida!'
 
-c1 = Cachorro("Tobias")
+c1 = Cachorro("Tobias","Macho")
 print(c1.set_raca("Pastor Alemão"))
 print(c1.get_raca())
