@@ -282,14 +282,14 @@ Nesta fase, o objetivo é entender os fundamentos da Programação Orientada a O
 ## Checklist
 
 - [ ] Classes
-- [ ] Objetos
-- [ ] `__init__`
-- [ ] Atributos
-- [ ] Métodos
+- [x] Objetos
+- [x] `__init__`
+- [x] Atributos
+- [x] Métodos
 - [ ] Encapsulamento
 - [ ] Herança
 - [ ] Polimorfismo
-- [ ] `__str__`
+- [x] `__str__`
 - [ ] Quando usar POO e quando não usar
 - [ ] Classes simples para modelar dados
 
