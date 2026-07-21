@@ -10,6 +10,9 @@ class Livro():
         self.disponivel = True
         pass
 
+    def __str__(self):
+        return f'"{self.titulo}"; de: {self.autor} '
+
     def set_titulo(self,titulo):
         self.titulo = titulo
     

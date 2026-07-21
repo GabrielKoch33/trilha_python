@@ -7,6 +7,9 @@ class Usuario():
         self.livros_em_uso = []
         # Um user não pode ter mais que 3 livros emprestados ao mesmo tempo
     
+    def __str__(self):
+        return f'{self.nome} | {self.matricula}'
+
     def set_nome_user(self,nome_usuario):
         self.nome = nome_usuario
 

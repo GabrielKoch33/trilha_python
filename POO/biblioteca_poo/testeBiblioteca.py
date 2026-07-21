@@ -1,19 +1,46 @@
-import cBiblioteca as lib
-import cUsuario as usr
-import cLivro as liv
+from cBiblioteca import Biblioteca
+from cLivro import Livro
+from cUsuario import Usuario
 
-obj_gabriel = usr.Usuario('Gabriel', 1024)
-obj_daniele = usr.Usuario('Daniele', 1452)
-obj_thais = usr.Usuario('Taís', 2343)
-obj_andrei = usr.Usuario('Andrei',4741)
+pessoas = [
+    Usuario('Gabriel', 1024),
+    Usuario('Daniele', 1452),
+    Usuario('Taís', 2343),
+    Usuario('Andrei',4741)
+]
 
-obj_it = liv.Livro('IT: A coisa', 'Stephen King',100)
-obj_1984 = liv.Livro('1984','George Orwell',101)
-obj_hobbit = liv.Livro('O Hobbit', 'Tolkien', 102),
-obj_duna = liv.Livro('Duna', 'Frank Herbert', 103),
-obj_rev_bichos = liv.Livro('A Revolução dos Bichos', 'George Orwell', 104),
+livros = [
+    Livro("Dom Casmurro", "Machado de Assis", "001"),
+    Livro("1984", "George Orwell", "002"),
+    Livro("O Hobbit", "Tolkien", "003"),
+    Livro("Duna", "Frank Herbert", "004"),
+    Livro("A Revolução dos Bichos", "Orwell", "005"),
+    Livro('IT: A coisa', 'Stephen King',100)
+]
 
+biblioteca = Biblioteca()
 
-obj_biblioteca = lib.Biblioteca()
-if obj_biblioteca.cadastrar_livro(obj_it):
-    print(f'Livro: {obj_it.get_titulo} cadastrado!')
+for l in livros:
+    biblioteca.cadastrar_livro(l)
+    print(f'Livro: "{l}" - Cadastrado!')
+
+print('-'*30)
+
+for p in pessoas:
+    biblioteca.cadastrar_usuario(p)
+    print(f'Pessoa: "{p}" - Cadastrado(a)!')
+
+pessoa_ = pessoas[0]
+livro_ = livros[3]
+
+if biblioteca.emprestar_livro(livro_,pessoa_):
+    print(f'{pessoa_} pegou o livro: {livro_}')
+else:
+    print(f'{pessoa_} não conseguiu o livro: {livro_} pois o mesmo já está emprestado')
+
+pessoa_2 = pessoas[2]
+
+if biblioteca.emprestar_livro(livro_,pessoa_2):
+    print(f'{pessoa_2} pegou o livro: {livro_}')
+else:
+    print(f'{pessoa_2} não conseguiu o livro: {livro_} pois o mesmo já está emprestado')
