@@ -69,7 +69,7 @@ class Estudante(Pessoa):
    # def saudacoes(): 
 
     def __init__(self, name, age, cod_aluno, media_final):# construtor da classe Estudante
-        super().__init__(name,age)# chama construtor da classe pai (super referencia a classe pai)
+        super().__init__(name,age) # chama construtor da classe pai (super referencia a classe pai)
         self.cod_aluno = cod_aluno 
         self.media_final = media_final # atributos criados exclusivamente para Estudante (pelo init externo)
 
